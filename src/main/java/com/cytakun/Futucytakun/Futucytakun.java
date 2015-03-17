@@ -9,11 +9,12 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
 
-@Mod(modid = Futucytakun.MODID, version = Futucytakun.VERSION)
+@Mod(modid = Futucytakun.MODID, version = Futucytakun.VERSION,name = Futucytakun.MODID)
 public class Futucytakun
 {
     public static final String MODID = "Futucytakun";
     public static final String VERSION = "1.0";
+
     @Mod.Instance(MODID)
     public static Futucytakun instance;
 
