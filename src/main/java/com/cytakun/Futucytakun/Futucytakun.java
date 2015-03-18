@@ -22,6 +22,7 @@ public class Futucytakun
     public void preinit(FMLPreInitializationEvent event) {
         GameRegistry.registerBlock(new BlockEnergyextractor(),"Energyextractor" );
         NetworkRegistry.INSTANCE.registerGuiHandler(MODID,new GuiHandler());
+        GameRegistry.registerTileEntity(TileEntityEnergyextractor.class,"TileEntityEnergyextractor");
 
     }
 

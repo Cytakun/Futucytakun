@@ -11,17 +11,18 @@ import net.minecraft.util.ResourceLocation;
  * Created by Khan Nguyen on 15.03.2015.
  */
 public class GuiEnergyextractor extends GuiContainer{
-    public GuiEnergyextractor(Container p_i1072_1_) {
+    public GuiEnergyextractor(Container p_i1072_1_,TileEntityEnergyextractor CK) {
         super(p_i1072_1_);
         xSize=175;
         ySize=142;
+        this.CK=CK;
     }
-    int CK=15;
+    TileEntityEnergyextractor CK;
     @Override
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(Texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-        drawString(fontRendererObj, String.valueOf(CK), width / 2, height / 4, 0x44ff11);
+        drawString(fontRendererObj, String.valueOf(CK.CK), width / 2, height / 4, 0x44ff11);
 
 
     }

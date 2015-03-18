@@ -21,7 +21,8 @@ public class GuiHandler implements IGuiHandler{
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         if (ID==15) {
-            return new GuiEnergyextractor(new ContainerEnergyextractor(player.inventory,world.getTileEntity(x,y,z)));
+            return new GuiEnergyextractor(new ContainerEnergyextractor(player.inventory,world.getTileEntity(x,y,z)),(TileEntityEnergyextractor)world.getTileEntity(x,y,z));
+
         }
         return null;
     }

@@ -5,7 +5,13 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 
 /**
  * Created by Khan Nguyen on 15.03.2015.
@@ -148,37 +154,112 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
         return true;
     }
 
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        writeCustomToNBT(nbt);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
+    }
+
+    private void writeCustomToNBT(NBTTagCompound nbt) {
+        nbt.setInteger("CK", this.CK);
+
+        if (Itemstack0 !=null) {
+            NBTTagCompound NBTTC0= new NBTTagCompound();
+            Itemstack0.writeToNBT(NBTTC0);
+            nbt.setTag("NBTTC0",NBTTC0);
+        }
+
+        if (Itemstack1 !=null) {
+            NBTTagCompound NBTTC1= new NBTTagCompound();
+            Itemstack1.writeToNBT(NBTTC1);
+            nbt.setTag("NBTTC1",NBTTC1);
+        }
+
+        if (Itemstack2 !=null) {
+            NBTTagCompound NBTTC2= new NBTTagCompound();
+            Itemstack2.writeToNBT(NBTTC2);
+            nbt.setTag("NBTTC2",NBTTC2);
+        }
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        readCustomFromNBT(pkt.func_148857_g());
+        worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+    }
+
+    private void readCustomFromNBT(NBTTagCompound nbt) {
+        this.CK=nbt.getInteger("CK");
+        if (nbt.hasKey("NBTTC0")) {
+            NBTTagCompound NBTTC =nbt.getCompoundTag("NBTTCO");
+            this.Itemstack0 = ItemStack.loadItemStackFromNBT(NBTTC);
+        }
+        if (nbt.hasKey("NBTTC1")) {
+            NBTTagCompound NBTTC =nbt.getCompoundTag("NBTTC1");
+            this.Itemstack1 = ItemStack.loadItemStackFromNBT(NBTTC);
+        }
+        if (nbt.hasKey("NBTTC2")) {
+            NBTTagCompound NBTTC =nbt.getCompoundTag("NBTTC2");
+            this.Itemstack2 = ItemStack.loadItemStackFromNBT(NBTTC);
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        writeCustomToNBT(nbt);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        readCustomFromNBT(nbt);
+    }
+
     int CK;
 
     @Override
     public void updateEntity() {
+
         if (worldObj.isRemote || worldObj.getTotalWorldTime()%20!=0) {
             return;
         }
-        if (Itemstack0!=null && Itemstack0.getItem()== Items.coal) {
-            CK=CK+100;
-            Itemstack0.stackSize--;
-            if (Itemstack0.stackSize<=0) {
-                Itemstack0=null;
-            }
 
-        }
-        if (Itemstack1!=null && Itemstack1.getItem()== Items.coal) {
-            CK=CK+100;
-            Itemstack1.stackSize--;
-            if (Itemstack1.stackSize<=0) {
-                Itemstack1=null;
-            }
-        }
-        if (Itemstack2!=null && Itemstack2.getItem()== Items.coal) {
-            CK=CK+100;
-            Itemstack2.stackSize--;
-            if (Itemstack2.stackSize<=0) {
-                Itemstack2=null;
-            }
+        worldObj.markBlockForUpdate(xCoord ,yCoord, zCoord);
 
+        if (CK<10000) {
+
+            if (Itemstack0!=null && Itemstack0.getItem()== Items.coal) {
+                CK=CK+100;
+                Itemstack0.stackSize--;
+                if (Itemstack0.stackSize<=0) {
+                    Itemstack0=null;
+                }
+
+            }
+            if (Itemstack1!=null && Itemstack1.getItem()== Items.coal) {
+                CK=CK+100;
+                Itemstack1.stackSize--;
+                if (Itemstack1.stackSize<=0) {
+                    Itemstack1=null;
+                }
+            }
+            if (Itemstack2!=null && Itemstack2.getItem()== Items.coal) {
+                CK=CK+100;
+                Itemstack2.stackSize--;
+                if (Itemstack2.stackSize<=0) {
+                    Itemstack2=null;
+                }
+
+            }
+        }
+
+        if (CK>10000) {
+            CK=10000;
         }
         System.out.println(CK);
     }
 
 }
+
