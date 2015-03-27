@@ -1,9 +1,9 @@
 package com.cytakun.Futucytakun.Gui;
 
 import com.cytakun.Futucytakun.EnergyExtractor.ContainerEnergyextractor;
-import com.cytakun.Futucytakun.EnergyExtractor.TileEntityEnergyextractor;
+import com.cytakun.Futucytakun.TileEntity.TileEntityEnergyextractor;
 import com.cytakun.Futucytakun.EnergyStorer.ContainerEnergystorer;
-import com.cytakun.Futucytakun.EnergyStorer.TileEntityEnergystorer;
+import com.cytakun.Futucytakun.TileEntity.TileEntityEnergystorer;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

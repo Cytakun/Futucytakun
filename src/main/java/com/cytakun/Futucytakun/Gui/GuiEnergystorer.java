@@ -1,6 +1,6 @@
 package com.cytakun.Futucytakun.Gui;
 
-import com.cytakun.Futucytakun.EnergyStorer.TileEntityEnergystorer;
+import com.cytakun.Futucytakun.TileEntity.TileEntityEnergystorer;
 import com.cytakun.Futucytakun.SecondHand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

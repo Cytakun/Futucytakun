@@ -1,1 +1,6 @@
 tile.Energyextractor.name=EnergyExtractor
+tile.Energystorer.name=EnergyStorer
+item.Energycleaver.name=EnergyCleaver
+itemGroup.Futucytakun=Futucytakun
+item.PortableEnergyContainer.name=PortableEnergyContainer
+item.EnergyCell.name=EnergyCell

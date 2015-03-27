@@ -1,11 +1,11 @@
 package com.cytakun.Futucytakun.EnergyExtractor;
 
 import com.cytakun.Futucytakun.Futucytakun;
+import com.cytakun.Futucytakun.TileEntity.TileEntityEnergyextractor;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -20,9 +20,9 @@ public class BlockEnergyextractor extends BlockContainer{
 
     //Konstruktor
     public BlockEnergyextractor() {
-        super(Material.anvil);
+        super(Material.grass);
         setBlockName("Energyextractor");
-        setCreativeTab(CreativeTabs.tabMisc);
+        setHardness(2f);
     }
 
     @Override

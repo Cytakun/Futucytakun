@@ -1,8 +1,6 @@
-package com.cytakun.Futucytakun.EnergyExtractor;
+package com.cytakun.Futucytakun.TileEntity;
 
-import com.cytakun.Futucytakun.EnergyStorer.TileEntityEnergystorer;
 import com.cytakun.Futucytakun.Futucytakun;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -382,7 +380,6 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
         if (CK>10000) {
             CK=10000;
         }
-        System.out.println(CK);
     }
 
 }

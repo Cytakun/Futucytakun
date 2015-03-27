@@ -1,6 +1,6 @@
 package com.cytakun.Futucytakun.Gui;
 
-import com.cytakun.Futucytakun.EnergyExtractor.TileEntityEnergyextractor;
+import com.cytakun.Futucytakun.TileEntity.TileEntityEnergyextractor;
 import com.cytakun.Futucytakun.SecondHand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
