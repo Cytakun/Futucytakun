@@ -30,6 +30,18 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
 
     private void writeCustomToNBT(NBTTagCompound nbt) {
         nbt.setInteger("CK", this.CK);
+
+        if (Itemstack0 !=null) {
+            NBTTagCompound NBTTC0= new NBTTagCompound();
+            Itemstack0.writeToNBT(NBTTC0);
+            nbt.setTag("NBTTC0",NBTTC0);
+        }
+
+        if (Itemstack1 !=null) {
+            NBTTagCompound NBTTC1= new NBTTagCompound();
+            Itemstack1.writeToNBT(NBTTC1);
+            nbt.setTag("NBTTC1",NBTTC1);
+        }
     }
 
     @Override
@@ -40,6 +52,15 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
 
     private void readCustomFromNBT(NBTTagCompound nbt) {
         this.CK = nbt.getInteger("CK");
+
+        if (nbt.hasKey("NBTTC0")) {
+            NBTTagCompound NBTTC =nbt.getCompoundTag("NBTTCO");
+            this.Itemstack0 = ItemStack.loadItemStackFromNBT(NBTTC);
+        }
+        if (nbt.hasKey("NBTTC1")) {
+            NBTTagCompound NBTTC =nbt.getCompoundTag("NBTTC1");
+            this.Itemstack1 = ItemStack.loadItemStackFromNBT(NBTTC);
+        }
     }
 
     @Override
@@ -70,6 +91,9 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
             if (this.CK<50000) {
                 int y=PortableEnergyContainer.UpdateCK(Itemstack1);
                 if (y>0) {
+                    if (y<=0) {
+                      y=0;
+                    }
                     PortableEnergyContainer.setCK(Itemstack1, y-10);
                     CK=CK + 10;
                 }
@@ -96,7 +120,7 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return 2;
     }
 
     @Override
@@ -158,12 +182,12 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
-        return false;
+        return true;
     }
 
     @Override
@@ -178,7 +202,7 @@ public class TileEntityEnergystorer extends TileEntity implements ISidedInventor
 
     @Override
     public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-        return false;
+        return true;
     }
 
 

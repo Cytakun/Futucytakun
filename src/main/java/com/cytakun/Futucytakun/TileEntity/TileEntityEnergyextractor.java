@@ -21,6 +21,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
     ItemStack Itemstack0 ;
     ItemStack Itemstack1 ;
     ItemStack Itemstack2 ;
+    public byte facing;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int Side) {
@@ -95,11 +96,6 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
 
     @Override
     public void setInventorySlotContents(int Slot  , ItemStack itemstack) {
-
-        //if (!isItemValidForSlot(Slot,itemstack)) {
-        //    return;
-        //}
-
         if (Slot==0) {
             Itemstack0=itemstack;
         }
@@ -233,7 +229,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                 worldObj.getBlock(xCoord,yCoord-1,zCoord) == Futucytakun.Energystorer ||
                 worldObj.getBlock(xCoord,yCoord,zCoord-1) == Futucytakun.Energystorer) {
 
-            if (worldObj.getTileEntity(xCoord+1,yCoord,zCoord) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord+1,yCoord,zCoord) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord+1,yCoord,zCoord) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord+1,yCoord,zCoord);
 
                 if (this.CK>0) {
@@ -248,7 +244,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                     }
                 }
             }
-            if (worldObj.getTileEntity(xCoord,yCoord+1,zCoord) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord,yCoord+1,zCoord) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord,yCoord+1,zCoord) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord,yCoord+1,zCoord);
 
                 if (this.CK>0) {
@@ -263,7 +259,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                     }
                 }
             }
-            if (worldObj.getTileEntity(xCoord,yCoord,zCoord+1) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord,yCoord,zCoord+1) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord,yCoord,zCoord+1) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord,yCoord,zCoord+1);
 
                 if (this.CK>0) {
@@ -278,7 +274,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                     }
                 }
             }
-            if (worldObj.getTileEntity(xCoord-1,yCoord,zCoord) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord-1,yCoord,zCoord) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord-1,yCoord,zCoord) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord-1,yCoord,zCoord);
 
                 if (this.CK>0) {
@@ -293,7 +289,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                     }
                 }
             }
-            if (worldObj.getTileEntity(xCoord,yCoord-1,zCoord) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord,yCoord-1,zCoord) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord,yCoord-1,zCoord) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord,yCoord-1,zCoord);
 
                 if (this.CK>0) {
@@ -308,7 +304,7 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
                     }
                 }
             }
-            if (worldObj.getTileEntity(xCoord,yCoord,zCoord-1) instanceof TileEntityEnergystorer) {
+            if (worldObj.getTileEntity(xCoord,yCoord,zCoord-1) instanceof TileEntityEnergystorer || worldObj.getTileEntity(xCoord,yCoord,zCoord-1) instanceof TileEntityEnergytransformer) {
                 TileEntityEnergystorer Energystorer = (TileEntityEnergystorer) worldObj.getTileEntity(xCoord,yCoord,zCoord-1);
 
                 if (this.CK>0) {
@@ -327,31 +323,33 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
 
         worldObj.markBlockForUpdate(xCoord ,yCoord, zCoord);
 
-        if (CK<10000) {
+        if (CK<9900) {
 
-            if (Itemstack0!=null && Itemstack0.getItem()== Items.coal) {
-                CK=CK+100;
+            if (Itemstack0 != null && Itemstack0.getItem() == Items.coal) {
+                CK = CK + 100;
                 Itemstack0.stackSize--;
-                if (Itemstack0.stackSize<=0) {
-                    Itemstack0=null;
+                if (Itemstack0.stackSize <= 0) {
+                    Itemstack0 = null;
                 }
 
             }
-            if (Itemstack1!=null && Itemstack1.getItem()== Items.coal) {
-                CK=CK+100;
+            if (Itemstack1 != null && Itemstack1.getItem() == Items.coal) {
+                CK = CK + 100;
                 Itemstack1.stackSize--;
-                if (Itemstack1.stackSize<=0) {
-                    Itemstack1=null;
+                if (Itemstack1.stackSize <= 0) {
+                    Itemstack1 = null;
                 }
             }
-            if (Itemstack2!=null && Itemstack2.getItem()== Items.coal) {
-                CK=CK+100;
+            if (Itemstack2 != null && Itemstack2.getItem() == Items.coal) {
+                CK = CK + 100;
                 Itemstack2.stackSize--;
-                if (Itemstack2.stackSize<=0) {
-                    Itemstack2=null;
+                if (Itemstack2.stackSize <= 0) {
+                    Itemstack2 = null;
                 }
 
             }
+        }
+        if (CK<=9000) {
             if (Itemstack0!=null && Itemstack0.getItem()== Item.getItemFromBlock(Blocks.coal_block)) {
                 CK=CK+1000;
                 Itemstack0.stackSize--;
@@ -380,7 +378,13 @@ public class TileEntityEnergyextractor extends TileEntity implements ISidedInven
         if (CK>10000) {
             CK=10000;
         }
+
     }
 
+    private String locname;
+
+    public void setGuiDisplayName(String displayName) {
+        this.locname = displayName;
+    }
 }
 

@@ -6,9 +6,12 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 /**
@@ -54,4 +57,21 @@ public class BlockEnergystorer extends BlockContainer{
         return this.icons[side];
     }
 
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLivingBase, ItemStack itemStack) {
+        int i = MathHelper.floor_double((double) (entityLivingBase.rotationYaw * 4.0F / 30.0F) + 5.0D) &3;
+        if (i == 0) {
+            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        }
+        if (i == 1) {
+            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+        }
+        if (i == 2) {
+            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        }
+        if (i == 3) {
+            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+        }
+        super.onBlockPlacedBy(world, x, y, z, entityLivingBase, itemStack);
+    }
 }

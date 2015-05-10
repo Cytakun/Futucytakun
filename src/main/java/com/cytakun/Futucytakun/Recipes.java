@@ -16,5 +16,6 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(Futucytakun.Energycell), "iri", "rdr", "iri",'i',new ItemStack(Items.iron_ingot),'r', new ItemStack(Items.redstone),'d', new ItemStack(Items.diamond));
         GameRegistry.addRecipe(new ItemStack(Futucytakun.PortableEnergyContainer), "idi","iei","iii", 'i',new ItemStack(Items.iron_ingot), 'd',new ItemStack(Items.diamond),'e',new ItemStack(Futucytakun.Energycell) );
         GameRegistry.addRecipe(new ItemStack(Futucytakun.Energycontainer), "idi", "rer", "idi", 'i', new ItemStack(Items.iron_ingot), 'd', new ItemStack(Items.diamond), 'e', new ItemStack(Futucytakun.Energycell), 'r', new ItemStack(Items.redstone) );
+        GameRegistry.addRecipe(new ItemStack(Futucytakun.Energystorer), "igi", "geg", "igi", 'i', new ItemStack(Blocks.iron_block), 'g', new ItemStack(Blocks.glass), 'e', new ItemStack(Futucytakun.Energycontainer));
     }
 }

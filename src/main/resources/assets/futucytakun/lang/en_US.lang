@@ -4,3 +4,7 @@ item.Energycleaver.name=EnergyCleaver
 itemGroup.Futucytakun=Futucytakun
 item.PortableEnergyContainer.name=PortableEnergyContainer
 item.EnergyCell.name=EnergyCell
+item.EnergyContainer.name=EnergyContainer
+item.Energytransformer.name=EnergyTransformer
+item.SonicSword.name=SonicSword
+item.EnergyBlaster.name=EnergyBlaster

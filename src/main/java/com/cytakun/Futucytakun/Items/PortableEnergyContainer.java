@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import sun.reflect.misc.FieldUtil;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class PortableEnergyContainer extends Item{
         setCreativeTab(Futucytakun.Futucytakun);
         setUnlocalizedName("PortableEnergyContainer");
         setTextureName("futucytakun:PortableEnergyContainer");
+        setMaxDamage(26);
     }
 
     public static int UpdateCK(ItemStack itemStack) {
@@ -24,6 +24,7 @@ public class PortableEnergyContainer extends Item{
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("CK")) {
             CK=itemStack.getTagCompound().getInteger("CK");
         }
+        itemStack.setItemDamage((int) (25-CK/1000f));
         return CK;
     }
 
